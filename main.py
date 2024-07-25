@@ -25,7 +25,12 @@ if not os.path.exists(db_file):
     conn.close()
 
 from vanna.remote import VannaDefault
-vn = VannaDefault(model='autoquery', api_key=os.environ.get('VANNA_API_KEY'))
+api_key = os.environ.get('VANNA_API_KEY')
+if api_key:
+    print("API Key found")
+else:
+    print("API Key not found")
+vn = VannaDefault(model='autoquery', api_key=api_key)
 
 vn.connect_to_sqlite(db_file)
 
