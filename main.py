@@ -1,7 +1,5 @@
 import os
 import sqlite3
-from vanna.remote import VannaDefault
-from vanna.flask import VannaFlaskApp
 
 # Define the database file path
 db_file = 'my_database.db'
@@ -26,6 +24,7 @@ if not os.path.exists(db_file):
     conn.commit()
     conn.close()
 
+from vanna.remote import VannaDefault
 vn = VannaDefault(model='autoquery', api_key=os.getenv('VANNA_API_KEY'))
 
 vn.connect_to_sqlite(db_file)
@@ -50,5 +49,6 @@ for query in queries:
     if query:
         vn.train(sql=query)
 
+from vanna.flask import VannaFlaskApp
 app = VannaFlaskApp(vn, allow_llm_to_see_data=True)
 app.run()
