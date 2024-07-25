@@ -1,1 +1,2 @@
 vanna==0.6.3
+vanna[chromadb,ollama]
