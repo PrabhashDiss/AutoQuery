@@ -30,7 +30,6 @@ vn = VannaDefault(model='autoquery', api_key=os.environ.get('VANNA_API_KEY'))
 vn.connect_to_sqlite(db_file)
 
 df_ddl = vn.run_sql("SELECT type, sql FROM sqlite_master WHERE sql is not null")
-
 for ddl in df_ddl['sql'].to_list():
   vn.train(ddl=ddl)
 
