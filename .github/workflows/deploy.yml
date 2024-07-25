@@ -24,6 +24,8 @@ jobs:
           pip install -r requirements.txt  # Make sure you have a requirements.txt file
 
       - name: Run build script
+        env:
+          VANNA_API_KEY: ${{ secrets.VANNA_API_KEY }}  # Pass the secret to the environment
         run: |
           python main.py  # Run your Python script to generate the site
 
