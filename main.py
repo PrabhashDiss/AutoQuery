@@ -24,13 +24,14 @@ if not os.path.exists(db_file):
     conn.commit()
     conn.close()
 
-from vanna.remote import VannaDefault
-api_key = os.environ.get('VANNA_API_KEY')
-if api_key:
-    print("API Key found")
-else:
-    print("API Key not found")
-vn = VannaDefault(model='autoquery', api_key=api_key)
+from vanna.ollama import Ollama
+from vanna.chromadb import ChromaDB_VectorStore
+class MyVanna(ChromaDB_VectorStore, Ollama):
+    def __init__(self, config=None):
+        ChromaDB_VectorStore.__init__(self, config=config)
+        Ollama.__init__(self, config=config)
+
+vn = MyVanna(config={'model': 'phi3:mini'})
 
 vn.connect_to_sqlite(db_file)
 
