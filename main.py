@@ -55,4 +55,4 @@ for query in queries:
 
 from vanna.flask import VannaFlaskApp
 app = VannaFlaskApp(vn, allow_llm_to_see_data=True)
-app.run()
+app.run(port=4000)
