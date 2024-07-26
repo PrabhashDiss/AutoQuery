@@ -31,7 +31,7 @@ class MyVanna(ChromaDB_VectorStore, Ollama):
         ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config=config)
 
-vn = MyVanna(config={'model': 'phi3:mini'})
+vn = MyVanna(config={'model': 'llama3.1'})
 
 vn.connect_to_sqlite(db_file)
 
